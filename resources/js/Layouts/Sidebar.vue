@@ -9,97 +9,19 @@ const menus = [
         icon: '<i class="fas fa-area-chart w-5"></i>',
     },
     {
-        name: "dewan pengawas",
-        url: "#",
-        icon: '<i class="fas fa-users w-5"></i>',
+        name: "Manajemen Mobil",
+        url: "/mobil",
+        icon: '<i class="fas fa-car w-5"></i>',
     },
     {
-        name: "komite",
-        url: "/komite",
+        name: "Penyewaan Mobil",
+        url: "/sewa",
         icon: '<i class="fas fa-id-badge w-5 w-5"></i>',
     },
     {
-        name: "arsip",
-        url: "/arsip",
-        icon: '<i class="fas fa-folder w-5"></i>',
-    },
-    {
-        name: "laporan",
-        url: "/laporan",
-        icon: '<i class="fas fa-book w-5"></i>',
-        submenu: [
-            {
-                name: "laporan dewas",
-                url: "/laporan",
-            },
-            {
-                name: "laporan arsip",
-                url: "/laporan",
-            },
-            {
-                name: "laporan komite",
-                url: "/laporan",
-            },
-
-        ]
-    },
-    {
-        name: "pengguna",
-        url: "/admin/user",
-        icon: '<i class="fas fa-key w-5"></i>',
-    },
-    {
-        name: "data master",
-        url: "/master",
-        icon: '<i class="fas fa-database w-5"></i>',
-        submenu: [
-            {
-                name: "menu dewas",
-                url: "/master/menu-dewas",
-            },
-            {
-                name: "jenis dokumen",
-                url: "/master/jenis-dokumen",
-            },
-            {
-                name: "kondisi dokumen",
-                url: "/master/kondisi-dokumen",
-            },
-            {
-                name: "media dokumen",
-                url: "/master/media-dokumen",
-            },
-            {
-                name: "kategori dokumen",
-                url: "/master/kategori-dokumen",
-            },
-            {
-                name: "jenis agenda",
-                url: "/master/jenis-agenda",
-            },
-            {
-                name: "kategori tkt. perkembangan",
-                url: "/master/tkt-perkembangan",
-            },
-            {
-                name: "lokasi",
-                url: "/master/lokasi",
-                submenu: [
-                    {
-                        name: "gedung",
-                        url: "/master/lokasi-gedung",
-                    },
-                    {
-                        name: "lemari",
-                        url: "/master/lokasi-lemari",
-                    },
-                    {
-                        name: "baris",
-                        url: "/master/lokasi-baris",
-                    },
-                ]
-            },
-        ]
+        name: "Pengguna",
+        url: "/users",
+        icon: '<i class="fas fa-users w-5 w-5"></i>',
     }
 ];
 
