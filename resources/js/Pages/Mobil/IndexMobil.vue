@@ -55,10 +55,10 @@ function formatPrice(value) {
 </script>
 
 <template>
-    <Head title="Jenis Dokumen" />
+    <Head title="Manajemen Mobil" />
 
     <AuthenticatedLayout>
-        <template #header><i class="fas fa-folder-open mr-2 capitalize"></i> jenis dokumen
+        <template #header><i class="fas fa-folder-open mr-2 capitalize"></i> manajemen mobil
         </template>
         <template #breadcrumbs>
             <ul>
