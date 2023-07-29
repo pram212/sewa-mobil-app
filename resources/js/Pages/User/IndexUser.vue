@@ -24,15 +24,15 @@ function filter() {
 </script>
 
 <template>
-    <Head title="Jenis Dokumen" />
+    <Head title="Pengguna" />
 
     <AuthenticatedLayout>
-        <template #header><i class="fas fa-folder-open mr-2 capitalize"></i> jenis dokumen
+        <template #header><i class="fas fa-folder-open mr-2 capitalize"></i> pengguna
         </template>
         <template #breadcrumbs>
             <ul>
-                <li>Manajemen Mobil</li>
-                <li>Daftar Mobil</li>
+                <li>Pengguna</li>
+                <li>Daftar Pengguna</li>
             </ul>
         </template>
 
@@ -56,13 +56,13 @@ function filter() {
                                 <th>Alamat</th>
                             </tr>
                         </thead>
-                        <tbody class="capitalize">
+                        <tbody>
                             <tr v-for="(user, i) in users.data" :key="i">
-                                <td>{{ user.name }}</td>
+                                <td class="capitalize">{{ user.name }}</td>
                                 <td>{{ user.email }}</td>
                                 <td>{{ user.phone }}</td>
                                 <td>{{ user.sim }}</td>
-                                <td>{{ user.address }}</td>
+                                <td class="capitalize">{{ user.address }}</td>
                             </tr>
                         </tbody>
                     </table>
