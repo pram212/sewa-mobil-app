@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreMobilRequest extends FormRequest
 {
@@ -24,9 +25,8 @@ class StoreMobilRequest extends FormRequest
         return [
             'merek_id' => ['required'],
             'model' => ['required'],
-            'plat_nomor' => ['required'],
+            'plat_nomor' => ['required', Rule::unique('mobils')],
             'tarif' => ['required'],
-            'tersedia' => ['required'],
         ];
     }
 }

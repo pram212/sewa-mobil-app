@@ -4,9 +4,9 @@ import { computed, onMounted } from 'vue'
 
 const menus = [
     {
-        name: "dashboard",
+        name: "home",
         url: "/dashboard",
-        icon: '<i class="fas fa-area-chart w-5"></i>',
+        icon: '<i class="fas fa-home w-5"></i>',
     },
     {
         name: "Manajemen Mobil",
@@ -14,9 +14,14 @@ const menus = [
         icon: '<i class="fas fa-car w-5"></i>',
     },
     {
-        name: "Penyewaan Mobil",
+        name: "Peminjaman Mobil",
         url: "/penyewaan",
-        icon: '<i class="fas fa-id-badge w-5 w-5"></i>',
+        icon: '<i class="fas fa-cart-plus w-5 w-5"></i>',
+    },
+    {
+        name: "Pengembalian Mobil",
+        url: "/pengembalian",
+        icon: '<i class="fas fa-retweet w-5 w-5"></i>',
     },
     {
         name: "Pengguna",
@@ -35,7 +40,7 @@ const isEmtySubmenu = (submenu) => {
 <template>
     <aside class="bg-base-100 w-80 h-full">
         <ul class="menu p-4 w-80 capitalize font-extrabold bg-base-100 min-h-screen text-base-content">
-            
+
             <div class="divider my-0"></div>
             <h2 class="menu-title">SEWA MOBIL APP</h2>
             <li v-for="(menu, i) in menus" :key="i">

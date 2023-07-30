@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Merek;
 use App\Models\Mobil;
+use App\Models\Penyewaan;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
-class PenyewaanController extends Controller
+class PengembalianController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,15 +20,15 @@ class PenyewaanController extends Controller
     {
         $user = Auth::user();
 
-        $penyewaan = $user->mobil()
-                ->where('status', true)
+        $pengembalian = $user->mobil()
+                ->where('status', false)
                 ->with('merek')
                 ->paginate(10)
                 ->withQueryString();
 
         $requests = request()->all();
 
-        return Inertia::render('Penyewaan/IndexPenyewaan', compact('penyewaan', 'requests'));
+        return Inertia::render('Pengembalian/IndexPengembalian', compact('pengembalian', 'requests'));
     }
 
     /**
@@ -35,22 +36,22 @@ class PenyewaanController extends Controller
      */
     public function create()
     {
-        if (!request('tgl_mulai') || !request('merek_id')) {
-            $mobils = [];
+        if (!request('plat_nomor')) {
+            $penyewaan = [];
         } else {
-            $mobils = Mobil::whereDoesntHave('user', function (Builder $query) {
-                $query->whereDate('tgl_selesai', '<', request('tgl_mulai'))->where('status', true);
-            })
-            ->where('merek_id', request('merek_id'))
-            ->with('merek')
-            ->get();
+            $penyewaan = Penyewaan::whereHas('mobil', function(Builder $query) {
+                        $query->where('plat_nomor', request('plat_nomor'));
+                    })
+                    ->where('status', 1)
+                    ->with(['mobil', 'mobil.merek'])
+                    ->get();
         }
 
         $mereks = Merek::select('id as value' , 'nama as label')->get();
         
         $requests = request()->all();
 
-        return Inertia::render('Penyewaan/FormPenyewaan', compact('mereks', 'mobils', 'requests'));
+        return Inertia::render('Pengembalian/FormPengembalian', compact('mereks', 'penyewaan', 'requests'));
     }
 
     /**
@@ -60,16 +61,16 @@ class PenyewaanController extends Controller
     {
         $user = Auth::user();
 
-        $user->mobil()->attach($request->mobil_id, ['tgl_mulai' => $request->tgl_mulai, 'tgl_selesai' => $request->tgl_mulai, 'status' => true ]);
+        $user->mobil()->syncWithoutDetaching([$request->mobil_id => ['tgl_mulai' => $request->tgl_mulai, 'tgl_selesai' => $request->tgl_mulai, 'status' => false ]]);
 
-        Mobil::find($request->mobil_id)->update(['tersedia' => false]);
+        Mobil::find($request->mobil_id)->update(['tersedia'=> true]);
 
         $notification = [
             'type' => 'success',
-            'message' => 'Selamat pesanan anda berhasil ditambahkan!'
+            'message' => 'Sewa anda berhasil dikembalikan!'
         ];
 
-        return Redirect::route('penyewaan.index')->with($notification);
+        return Redirect::route('pengembalian.index')->with($notification);
 
     }
 

@@ -21,4 +21,9 @@ class Mobil extends Model
         return $this->belongsToMany(User::class, 'penyewaan')->withPivot('tgl_mulai', 'tgl_selesai', 'status');
     }
 
+    public function penyewaan()
+    {
+        return $this->belongsToMany(User::class, 'penyewaan')->withPivot('tgl_mulai', 'tgl_selesai', 'status');
+    }
+
 }

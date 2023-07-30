@@ -90,7 +90,7 @@ const submit = () => {
 
             <div class="mt-4">
                 <InputLabel for="sim" value="Alamat Lengkap" />
-                <textarea name="" id="address" class="mt-1 block w-full" cols="30" rows="3" v-model="form.address"></textarea>
+                <textarea name="" id="address" class="mt-1 block w-full textarea textarea-primary" cols="30" rows="3" v-model="form.address"></textarea>
                 <InputError class="mt-2" :message="form.errors.address" />
             </div>
 
@@ -132,9 +132,7 @@ const submit = () => {
                     Already registered?
                 </Link>
 
-                <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Register
-                </PrimaryButton>
+                <button class="btn btn-primary ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">Register</button>
             </div>
         </form>
     </GuestLayout>

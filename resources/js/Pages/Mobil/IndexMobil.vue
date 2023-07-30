@@ -84,13 +84,13 @@ function formatPrice(value) {
                         <div class="form-control w-full">
                             <label class="label">Model :</label>
                             <input type="text" placeholder="Type here"
-                                class="input input-bordered input-primary input-sm w-full" v-model="formFilter.name" />
+                                class="input input-bordered input-primary input-sm w-full" v-model="formFilter.model" />
                         </div>
                         <div class="form-control w-full">
                             <label class="label">Ketersediaan :</label>
                             <VueFromMultiselect v-model="formFilter.tersedia" :options="[
-                                { value: 0, label: 'Tidak tersedia' },
-                                { value: 1, label: 'Tersedia' },
+                                { value: 1, label: 'Tidak tersedia' },
+                                { value: 0, label: 'Tersedia' },
                             ]" :searchable="true" :create-option="false" multiselect-blue />
                         </div>
                         <div class="grid-cols-span space-x-3 mt-4">

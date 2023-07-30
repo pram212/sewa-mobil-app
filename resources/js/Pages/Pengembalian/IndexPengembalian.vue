@@ -7,7 +7,7 @@ import "moment/locale/id";
 moment.locale("id");
 
 const props = defineProps({
-    penyewaan: Object,
+    pengembalian: Object,
     requests: Object,
 });
 
@@ -16,7 +16,7 @@ const formFilter = useForm({
 });
 
 function filter() {
-    formFilter.get(route("penyewaan.index"), formFilter, {
+    formFilter.get(route("pengembalian.index"), formFilter, {
         preserveScroll: true,
     });
 }
@@ -29,21 +29,23 @@ function formatPrice(value) {
 function duration(startdate, enddate) {
     var start = moment(startdate, "YYYY-MM-DD");
     var end = moment(enddate, "YYYY-MM-DD");
+
+    //Difference in number of days
     return moment.duration(end.diff(start)).asDays() + 1;
 }
 
 </script>
 
 <template>
-    <Head title="Penyewaan Mobil" />
+    <Head title="Pengembalian Mobil" />
 
     <AuthenticatedLayout>
-        <template #header><i class="fas fa-folder-open mr-2 capitalize"></i> Penyewaan Mobil
+        <template #header><i class="fas fa-folder-open mr-2 capitalize"></i> pengembalian Mobil
         </template>
         <template #breadcrumbs>
             <ul>
-                <li>Penyewaan</li>
-                <li>Daftar Penyewaan</li>
+                <li>Pengembalian</li>
+                <li>Daftar pengembalian</li>
                 <li class="font-extrabold">{{ $page.props.auth.user.name }}</li>
             </ul>
         </template>
@@ -52,7 +54,7 @@ function duration(startdate, enddate) {
             <div class="bg-base-100 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6">
                     <div class="flex justify-between">
-                        <Link :href="route('penyewaan.create')" class="btn btn-sm btn-primary">Sewa Baru</Link>
+                        <Link :href="route('pengembalian.create')" class="btn btn-sm btn-primary">Entry Pengembalian</Link>
                     </div>
                     
                     <div class="divider"></div>
@@ -71,7 +73,7 @@ function duration(startdate, enddate) {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(sewa, i) in penyewaan.data" :key="i">
+                            <tr v-for="(sewa, i) in pengembalian.data" :key="i">
                                 <td class="capitalize">{{ sewa.merek.nama }}</td>
                                 <td>{{ sewa.model }}</td>
                                 <td>{{ sewa.plat_nomor }}</td>
@@ -86,11 +88,11 @@ function duration(startdate, enddate) {
 
                     <div class="flex justify-between pt-5">
                         <!-- PAGINATION -->
-                        <PaginationVue :links="penyewaan.links"></PaginationVue>
+                        <PaginationVue :links="pengembalian.links"></PaginationVue>
                         <!-- PAGINATION END -->
 
                         <div class="btn-secondary btn btn-sm">
-                            Total Data : {{ penyewaan.total }}
+                            Total Data : {{ pengembalian.total }}
                         </div>
                     </div>
                 </div>

@@ -85,15 +85,6 @@ const submit = () => {
                         }" v-model="form.tarif" :options="{ currency: 'IDR' }" autofocus autocomplete="tarif" />
                         <InputError class="mt-2" :message="form.errors.tarif" />
                     </div>
-                    <div class="form-control mb-2">
-                        <label for="tarif" class="label">Tersedia :</label>
-                        <VueFromMultiselect v-model="form.tersedia" :options="[
-                                { value: 0, label: 'Tidak tersedia' },
-                                { value: 1, label: 'Tersedia' },
-                            ]" :searchable="true" :create-option="false" multiselect-blue />
-                        <InputError class="mt-2" :message="form.errors.tersedia" />
-                    </div>
-
 
                     <div class="divider"></div>
 

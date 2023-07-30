@@ -16,10 +16,9 @@ class MobilController extends Controller
      */
     public function index()
     {
-
         $mobils = Mobil::when(request('merek_id'), fn ($kategori) => $kategori->where('merek_id',  request('merek_id')))
             ->when(request('model'), fn ($kategori) => $kategori->where('model', 'like', '%' . request('model') . '%'))
-            ->when(request('tersedia'), fn ($kategori) => $kategori->where('tersedia', '=',  request('tersedia')))
+            ->when(request('tersedia'), fn ($kategori) => $kategori->where('tersedia', '==',  request('tersedia')))
             ->with(['merek'])
             ->paginate(10)
             ->withQueryString();
@@ -114,6 +113,19 @@ class MobilController extends Controller
      */
     public function destroy(Mobil $mobil)
     {
+        $jumlahSewa = $mobil->penyewaan()->where('status', true)->count();
+
+        if ($jumlahSewa > 0) {
+            # code...
+            $notification = [
+                'type' => 'error',
+                'message' => 'Gagal! Mobil ' . $mobil->plat_nomor . ' sedang dalam penyewaan'
+            ];
+    
+            return Redirect::back()->with($notification);
+            
+        }
+
         $mobil->delete();
 
         $notification = [

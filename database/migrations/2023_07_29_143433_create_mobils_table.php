@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('model');
             $table->string('plat_nomor');
             $table->double('tarif');
-            $table->boolean('tersedia')->default(0);
+            $table->boolean('tersedia')->default(1);
             $table->timestamps();
         });
     }
