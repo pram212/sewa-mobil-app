@@ -3,7 +3,7 @@
 
 Aplikasi penyewaan mobil yang dibuat dengan laravel guna memenuhi tes teknis seleksi karyawan. saya buat dengan model SPA (Single Page Application)
 
-## Pre Requisite
+## Persiapan
 
 Sebelum anda melakukan instalasi pada komputer Anda pastikan bahwa pada komputer anda sudah terinstall:
 - php >= 8.1*
