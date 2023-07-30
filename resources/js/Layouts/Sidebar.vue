@@ -15,7 +15,7 @@ const menus = [
     },
     {
         name: "Penyewaan Mobil",
-        url: "/sewa",
+        url: "/penyewaan",
         icon: '<i class="fas fa-id-badge w-5 w-5"></i>',
     },
     {

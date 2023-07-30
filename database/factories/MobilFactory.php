@@ -25,7 +25,7 @@ class MobilFactory extends Factory
             'model' => $this->faker->vehicle,
             'plat_nomor' => $this->faker->vehicleRegistration,
             'tarif' => $this->faker->numberBetween(500000, 1000000),
-            'tersedia' => $this->faker->numberBetween(0,1),
+            'tersedia' => true,
          ];
     }
 }

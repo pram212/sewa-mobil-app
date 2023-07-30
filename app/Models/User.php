@@ -45,4 +45,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function mobil()
+    {
+        return $this->belongsToMany(Mobil::class, 'penyewaan')->withPivot('tgl_mulai', 'tgl_selesai', 'status');
+    }
 }

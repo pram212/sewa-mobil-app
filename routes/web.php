@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MerekController;
 use App\Http\Controllers\MobilController;
+use App\Http\Controllers\PenyewaanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
@@ -39,6 +40,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/mobil', MobilController::class);
     Route::resource('/merek', MerekController::class);
+    Route::resource('/penyewaan', PenyewaanController::class);
+    Route::get('/penyewaan-cekmobil', [PenyewaanController::class, 'getMobil'])->name('penyewaan.cekmobil');
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     
 });

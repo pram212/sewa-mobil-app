@@ -20,9 +20,25 @@ class MobilController extends Controller
         $mobils = Mobil::when(request('merek_id'), fn ($kategori) => $kategori->where('merek_id',  request('merek_id')))
             ->when(request('model'), fn ($kategori) => $kategori->where('model', 'like', '%' . request('model') . '%'))
             ->when(request('tersedia'), fn ($kategori) => $kategori->where('tersedia', '=',  request('tersedia')))
-            ->with('merek')
+            ->with(['merek'])
             ->paginate(10)
             ->withQueryString();
+
+        $mobils->transform(function ($penyewaan, $key) {
+            $ketersediaan = true;
+
+            if ($penyewaan->user->count()  > 0) {
+                if ($penyewaan->user->first()->pivot->status) {
+                    $ketersediaan = false;
+                }
+            }
+
+            $penyewaan->ketersediaan = $ketersediaan;
+            
+            return $penyewaan;
+
+        });
+        
 
         $mereks = Merek::select('id as value' , 'nama as label')->get();
 
